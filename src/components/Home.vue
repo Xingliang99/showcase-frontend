@@ -36,7 +36,21 @@
           <el-menu-item index="/Task/done">完成</el-menu-item>
         </el-sub-menu>
 
-        <el-menu-item index="/HR">
+        <el-menu-item index="/Attendance">
+          <el-icon>
+            <document />
+          </el-icon>
+          <template #title>考勤</template>
+        </el-menu-item>
+
+        <el-menu-item index="/Announcements">
+          <el-icon>
+            <document />
+          </el-icon>
+          <template #title>公告</template>
+        </el-menu-item>
+
+        <el-menu-item index="">
           <el-icon>
             <document />
           </el-icon>
@@ -56,7 +70,7 @@
         <!-- 这里可以放置头部内容 -->
         <div class="logo">OA System</div>
       </el-header>
-      
+
       <!-- 主体内容区域 -->
       <el-main>
         <router-view></router-view>
@@ -81,6 +95,17 @@ import {
 } from '@element-plus/icons-vue'
 
 const isCollapse = ref(false)
+
+import axios from 'axios';
+
+axios.get('/')
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+
 </script>
   
 <style>

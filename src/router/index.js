@@ -4,6 +4,8 @@ import City from "../components/City.vue"
 import Hello from "../components/HelloWorld.vue"
 import Person from "../components/Person.vue"
 import Task from "../components/Task/Task.vue"
+import Attendance from "../components/Attendance/Attendance.vue"
+import Announcement from "../components/Announcement/Announcement.vue"
 
 const Home = { template: '<div>Home</div>' }
 
@@ -35,6 +37,14 @@ const routes = [
                 component: () => import("../components/Task/Done.vue")
             }
         ]
+    },
+    {
+        path: '/Attendance',
+        component: Attendance
+    },
+    {
+        path: '/Announcements',
+        component: Announcement
     }
 ]
 

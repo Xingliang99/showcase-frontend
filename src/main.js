@@ -9,6 +9,7 @@ import router from './router/index'
 
 // axios
 import Axios from 'axios'
+Axios.defaults.baseURL = 'http://localhost:8080';
 // Axios.defaults.baseURL = "http://localhost:8080"
 // Vue.prototype.$http = Axios
 
