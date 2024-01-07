@@ -1,71 +1,44 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-import City from './components/City.vue'
-import Home from './components/Home.vue'
-</script>
-
-<script>
-export default{
-  created:function(){
-    console.log("app created")
-  }
-}
-</script>
-
 <template>
-
-  <Home/>
-  <!-- <div class="common-layout">
+  <el-container>
+    <el-aside style="width:180px;">
+    </el-aside>
     <el-container>
-      <el-aside width="200px"><Home/></el-aside>
-      <el-container>
-        <el-header>Header</el-header>
-        <el-main>Main</el-main>
-        <el-footer>Footer</el-footer>
-      </el-container>
+      <el-header>XX管理系统</el-header>
+      <el-main>内容区域</el-main>
+      <el-footer>版权所有</el-footer>
     </el-container>
-  </div> -->
-  <!-- <div>
-    <RouterLink to="/City">City</RouterLink>
-    <RouterLink to="/Person">Person</RouterLink>
-    <RouterLink to="/Hello">Hello</RouterLink>
-    <RouterLink to="/">/</RouterLink>
-    <RouterLink to="/11">11</RouterLink>
-  </div>
-    
-  <div>
-    <RouterView></RouterView>
-  </div> -->
-
-  
+  </el-container>
 </template>
+为了便于区分各个区域，我们设置样式如下：
 
 <style scoped>
-header {
-  line-height: 1.5;
+.el-container {
+  height: 100%;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.el-header,
+.el-footer {
+  background-color: #b3c0d1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.el-aside {
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.el-menu {
+  background-color: #d3dce6;
 }
 </style>

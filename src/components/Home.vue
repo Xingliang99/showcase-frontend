@@ -1,117 +1,104 @@
 <template>
-  <el-container style="height: 100vh;">
-    <!-- 侧边栏 -->
-    <el-aside width="200px">
-      <el-menu default-active="2" class="el-menu-vertical-demo" :collapse="isCollapse" router=true>
-        <el-sub-menu index="1">
-          <template #title>
-            <el-icon>
-              <location />
-            </el-icon>
-            <span>个人</span>
-          </template>
-          <el-menu-item-group>
-            <template #title><span>Group One</span></template>
-            <el-menu-item index="/Person">信息</el-menu-item>
-            <el-menu-item index="1-2">item two</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group Two">
-            <el-menu-item index="1-3">item three</el-menu-item>
-          </el-menu-item-group>
-          <el-sub-menu index="1-4">
-            <template #title><span>item four</span></template>
-            <el-menu-item index="1-4-1">item one</el-menu-item>
-          </el-sub-menu>
-        </el-sub-menu>
-
-        <el-sub-menu index="/Task">
-          <template #title>
-            <el-icon>
-              <icon-menu />
-            </el-icon>
-            <span>任务</span>
-          </template>
-
-          <el-menu-item index="/Task/todo">待办</el-menu-item>
-          <el-menu-item index="/Task/done">完成</el-menu-item>
-        </el-sub-menu>
-
-        <el-menu-item index="/Attendance">
-          <el-icon>
-            <document />
-          </el-icon>
-          <template #title>考勤</template>
-        </el-menu-item>
-
-        <el-menu-item index="/Announcements">
-          <el-icon>
-            <document />
-          </el-icon>
-          <template #title>公告</template>
-        </el-menu-item>
-
-        <el-menu-item index="">
-          <el-icon>
-            <document />
-          </el-icon>
-          <template #title>人事</template>
-        </el-menu-item>
-        <el-menu-item index="4">
-          <el-icon>
-            <setting />
-          </el-icon>
-          <template #title>通知</template>
-        </el-menu-item>
-      </el-menu>
-    </el-aside>
-
+  <div class="common-layout">
     <el-container>
-      <el-header>
-        <!-- 这里可以放置头部内容 -->
-        <div class="logo">OA System</div>
+      <el-row>
+        <el-col :span="24">
+          <div class="grid-content ep-bg-purple-dark" />
+          <span>搜索栏</span>
+        </el-col>
+      </el-row>
+      <el-header height="200px">
+        <div class="logo">微博</div>
+        <el-menu mode="horizontal">
+          <el-menu-item index="1">首页</el-menu-item>
+          <el-menu-item index="2">视频</el-menu-item>
+          <el-menu-item index="2">热门</el-menu-item>
+          <el-menu-item index="2">消息</el-menu-item>
+        </el-menu>
       </el-header>
 
-      <!-- 主体内容区域 -->
+      <el-aside width="300px">
+        <!-- 个人信息卡片 -->
+        <!-- 热门话题列表 -->
+        <!-- 推荐关注用户列表 -->
+      </el-aside>
+
       <el-main>
-        <router-view></router-view>
+        <div class="posts-container">
+          <el-row>
+            <el-col :span="8">
+              <div class="grid-content ep-bg-purple">
+                选项
+              </div>
+            </el-col>
+            <el-col :span="8">
+              <!-- <PostList></PostList> -->
+              <div>
+                <post-card v-for="post in posts" :key="post.id" :post="post" />
+              </div>
+            </el-col>
+            <el-col :span="8">
+              <div class="grid-content ep-bg-purple">
+                热榜
+              </div>
+            </el-col>
+          </el-row>
+        </div>
       </el-main>
-
-      <el-footer>
-        © 2023 OA System. All rights reserved.
-      </el-footer>
     </el-container>
-  </el-container>
-  <el-radio-group v-model="isCollapse" style="margin-bottom: 20px">
-  </el-radio-group>
+  </div>
 </template>
-  
-<script lang="ts" setup>
-import { ref } from 'vue'
-import {
-  Document,
-  Menu as IconMenu,
-  Location,
-  Setting,
-} from '@element-plus/icons-vue'
 
-const isCollapse = ref(false)
 
-import axios from 'axios';
-
-axios.get('/')
-  .then(response => {
-    console.log(response.data);
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
-
-</script>
-  
 <style>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 100%;
-  height: 100%;
-}
+  .el-container {
+    height: 100%;
+  }
+
+  .el-header,
+  .el-footer
+  {
+    background-color: #b3c0d1; color: #333; text-align: center; line-height: 60px;
+  }
+
+  .el-aside {
+    background-color: #d3dce6; color: #333; text-align: center; line-height: 200px;
+  }
+
+  .el-main {
+    background-color: #e9eef3; color: #333; text-align: center; line-height: 160px;
+  }
+
+  .el-menu {
+    background-color: #d3dce6;
+  }
 </style>
-  
+
+<script>
+import PostCard from './Post/PostCard.vue';
+
+export default {
+  components: {
+    PostCard
+  },
+  data() {
+    return {
+      posts: [
+        {
+          id: 1,
+          user: {
+            name: '极目新闻',
+            avatar: 'path/to/avatar.jpg'
+          },
+          content: '这是一个微博帖子的示例内容。',
+          image: 'path/to/image.jpg',
+          time: '1小时前',
+          likes: 10,
+          comments: 5
+        },
+        // 更多帖子...
+      ]
+    };
+  }
+};
+</script>
