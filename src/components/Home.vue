@@ -1,3 +1,35 @@
+<script>
+import PostCard from './Post/PostCard.vue';
+import RegistTip from './Register/RegisterTip.vue'
+
+export default {
+  components: {
+    PostCard,
+    PostCard
+},
+  data() {
+    return {
+      posts: [
+        {
+          id: 1,
+          user: {
+            name: '极目新闻',
+            avatar: 'https://s2.loli.net/2024/01/08/T2fQxL9dOtYiGUD.jpg'
+          },
+          content: '在今日的FindX7发布会上，OPPO Find X7系列以其杰出的影像配置吸引了无数摄影爱好者的目光。新机凭借其行业首创双潜望四主摄和全焦段杜比视频功能，让它在拍照和视频拍摄上都实现了全方位的领先。',
+          image: '',
+          time: '1小时前',
+          likes: 10,
+          comments: 5
+        },
+        // 更多帖子...
+      ],
+      isLoggin:true
+    };
+  }
+};
+</script>
+
 <template>
   <div class="common-layout">
     <el-container>
@@ -49,7 +81,8 @@
                 <div v-if="isLoggin">
                   <button>请登录</button>
                 </div>
-                <RegistTip></RegistTip>
+
+                <RegistTip />
 
                 <el-menu mode="vertical">
                   <el-menu-item index="1">热门微博</el-menu-item>
@@ -139,33 +172,3 @@
 }
 </style>
 
-<script>
-import PostCard from './Post/PostCard.vue';
-import RegistTip from './Register/RegisterTip.vue'
-
-export default {
-  components: {
-    PostCard
-  },
-  data() {
-    return {
-      posts: [
-        {
-          id: 1,
-          user: {
-            name: '极目新闻',
-            avatar: 'https://s2.loli.net/2024/01/08/T2fQxL9dOtYiGUD.jpg'
-          },
-          content: '在今日的FindX7发布会上，OPPO Find X7系列以其杰出的影像配置吸引了无数摄影爱好者的目光。新机凭借其行业首创双潜望四主摄和全焦段杜比视频功能，让它在拍照和视频拍摄上都实现了全方位的领先。',
-          image: '',
-          time: '1小时前',
-          likes: 10,
-          comments: 5
-        },
-        // 更多帖子...
-      ],
-      isLoggin:true
-    };
-  }
-};
-</script>

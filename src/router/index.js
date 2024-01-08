@@ -10,7 +10,14 @@ import Announcement from "../components/Announcement/Announcement.vue"
 const Home = { template: '<div>Home</div>' }
 
 const routes = [
-    { path: '/11', component: () => import("../components/TheWelcome.vue") },
+    {
+        path: '/login',
+        component: () => import("../components/TheWelcome.vue")
+    },
+    {
+        path: '/11',
+        component: () => import("../components/TheWelcome.vue")
+    },
     {
         path: '/12',
         component: Home,
@@ -53,11 +60,14 @@ const router = createRouter({
     routes
 })
 
-// const router = VueRouter.createRouter({
-//     // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
-//     history: VueRouter.createWebHashHistory(),
-//     routes, // `routes: routes` 的缩写
-//   })
-
+//导航守卫
+router.beforeEach((to, from, next) => {
+    const isLoggedIn = store.getters.isLoggedIn;
+    if (to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn) {
+        next('/login');
+    } else {
+        next();
+    }
+})
 
 export default router

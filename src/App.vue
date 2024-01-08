@@ -6,11 +6,11 @@ import Home from './components/Home.vue'
 </script>
 
 <script>
-export default{
-  created:function(){
-    console.log("app created")
-  }
-}
+// export default{
+//   created:function(){
+//     console.log("app created")
+//   }
+// }
 </script>
 
 <template>
