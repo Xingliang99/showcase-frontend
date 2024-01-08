@@ -27,19 +27,33 @@
         <div class="posts-container">
           <el-row>
             <el-col :span="8">
-              <div class="grid-content ep-bg-purple">
-                选项
-              </div>
+              <el-menu mode="vertical">
+                <el-menu-item index="1">热门微博</el-menu-item>
+                <el-menu-item index="2">热门榜单</el-menu-item>
+                <el-menu-item index="2">话题榜</el-menu-item>
+                <el-menu-item index="2">热搜榜</el-menu-item>
+                <el-menu-item index="2">文娱榜</el-menu-item>
+                <el-menu-item index="2">要闻榜</el-menu-item>
+              </el-menu>
             </el-col>
+
             <el-col :span="8">
-              <!-- <PostList></PostList> -->
+              <PostList></PostList>
               <div>
                 <post-card v-for="post in posts" :key="post.id" :post="post" />
               </div>
             </el-col>
             <el-col :span="8">
               <div class="grid-content ep-bg-purple">
-                热榜
+                <RegistTip></RegistTip>
+                <el-menu mode="vertical">
+                  <el-menu-item index="1">热门微博</el-menu-item>
+                  <el-menu-item index="2">热门榜单</el-menu-item>
+                  <el-menu-item index="2">话题榜</el-menu-item>
+                  <el-menu-item index="2">热搜榜</el-menu-item>
+                  <el-menu-item index="2">文娱榜</el-menu-item>
+                  <el-menu-item index="2">要闻榜</el-menu-item>
+                </el-menu>
               </div>
             </el-col>
           </el-row>
@@ -49,33 +63,57 @@
   </div>
 </template>
 
-
 <style>
-  .el-container {
-    height: 100%;
-  }
+.header {
+  /* //TODO:换成图片 */
+  background-color: beige;
+  height: 200px;
+}
 
-  .el-header,
-  .el-footer
-  {
-    background-color: #b3c0d1; color: #333; text-align: center; line-height: 60px;
-  }
+.common-layout {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
 
-  .el-aside {
-    background-color: #d3dce6; color: #333; text-align: center; line-height: 200px;
-  }
+.el-container {
+  height: 100%;
+}
 
-  .el-main {
-    background-color: #e9eef3; color: #333; text-align: center; line-height: 160px;
-  }
+.el-header,
+.el-footer {
+  background-color: #b3c0d1;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+}
 
-  .el-menu {
-    background-color: #d3dce6;
-  }
+.el-aside {
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+
+.el-main {
+  background-color: #e9eef3;
+  color: #333;
+  text-align: center;
+  line-height: 160px;
+}
+
+.el-menu {
+  background-color: #d3dce6;
+}
 </style>
 
 <script>
 import PostCard from './Post/PostCard.vue';
+import RegistTip from './Register/RegisterTip.vue'
 
 export default {
   components: {

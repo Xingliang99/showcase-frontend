@@ -1,7 +1,12 @@
 <template>
   <el-card class="post-card">
     <div class="post-header">
-      <el-avatar :src="post.user.avatar"></el-avatar>
+      <el-avatar :src="post.user.avatar">
+        <template #error>
+          <div class="image-slot">
+            <el-icon><icon-picture /></el-icon>
+          </div>
+        </template></el-avatar>
       <div class="user-info">
         <h3 class="username">{{ post.user.name }}</h3>
         <p class="post-time">{{ post.time }}</p>
@@ -15,6 +20,13 @@
     <div class="post-content">
       <p>{{ post.content }}</p>
       <img v-if="post.image" :src="post.image" class="post-image" />
+      <el-image>
+        <template #error>
+          <div class="image-slot">
+            <el-icon><icon-picture /></el-icon>
+          </div>
+        </template>
+      </el-image>
     </div>
     <div class="post-actions">
       <el-button type="text" icon="el-icon-thumb">
@@ -63,9 +75,7 @@ export default {
   color: #999;
 }
 
-.post-follow{
-
-}
+.post-follow {}
 
 .post-content {
   margin-top: 20px;
