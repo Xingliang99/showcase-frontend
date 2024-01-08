@@ -7,6 +7,9 @@ import App from './App.vue'
 
 import router from './router/index'
 
+// icon
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
 // axios
 import Axios from 'axios'
 Axios.defaults.baseURL = 'http://localhost:8080';
@@ -29,6 +32,10 @@ Axios.defaults.baseURL = 'http://localhost:8080';
 // })
 
 const app = createApp(App)
+
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+    app.component(key, component)
+}
 
 app.use(router)
 app.use(ElementPlus)

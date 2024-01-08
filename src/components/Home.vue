@@ -26,14 +26,14 @@
       <el-main>
         <div class="posts-container">
           <el-row>
-            <el-col :span="8">
+            <el-col :span="8" class="category">
               <el-menu mode="vertical">
                 <el-menu-item index="1">热门微博</el-menu-item>
                 <el-menu-item index="2">热门榜单</el-menu-item>
-                <el-menu-item index="2">话题榜</el-menu-item>
-                <el-menu-item index="2">热搜榜</el-menu-item>
-                <el-menu-item index="2">文娱榜</el-menu-item>
-                <el-menu-item index="2">要闻榜</el-menu-item>
+                <el-menu-item index="3">话题榜</el-menu-item>
+                <el-menu-item index="4">热搜榜</el-menu-item>
+                <el-menu-item index="5">文娱榜</el-menu-item>
+                <el-menu-item index="6">要闻榜</el-menu-item>
               </el-menu>
             </el-col>
 
@@ -43,16 +43,21 @@
                 <post-card v-for="post in posts" :key="post.id" :post="post" />
               </div>
             </el-col>
-            <el-col :span="8">
+
+            <el-col :span="8" class="hot">
               <div class="grid-content ep-bg-purple">
+                <div v-if="isLoggin">
+                  <button>请登录</button>
+                </div>
                 <RegistTip></RegistTip>
+
                 <el-menu mode="vertical">
                   <el-menu-item index="1">热门微博</el-menu-item>
                   <el-menu-item index="2">热门榜单</el-menu-item>
-                  <el-menu-item index="2">话题榜</el-menu-item>
-                  <el-menu-item index="2">热搜榜</el-menu-item>
-                  <el-menu-item index="2">文娱榜</el-menu-item>
-                  <el-menu-item index="2">要闻榜</el-menu-item>
+                  <el-menu-item index="3">话题榜</el-menu-item>
+                  <el-menu-item index="4">热搜榜</el-menu-item>
+                  <el-menu-item index="5">文娱榜</el-menu-item>
+                  <el-menu-item index="6">要闻榜</el-menu-item>
                 </el-menu>
               </div>
             </el-col>
@@ -64,6 +69,7 @@
 </template>
 
 <style>
+
 .header {
   /* //TODO:换成图片 */
   background-color: beige;
@@ -78,6 +84,8 @@
   left: 0;
   width: 100%;
   height: 100vh;
+
+  background-color: #f1f2f5;
 }
 
 .el-container {
@@ -106,6 +114,26 @@
   line-height: 160px;
 }
 
+.category{
+  background-color: white;
+  width: 200px;
+  max-width: 200px;
+}
+
+.category .el-menu {
+  background-color: white;
+}
+
+.hot{
+  background-color: white;
+  width: 300px;
+  max-width: 300px;
+}
+
+.hot .el-menu {
+  background-color: white;
+}
+
 .el-menu {
   background-color: #d3dce6;
 }
@@ -126,16 +154,17 @@ export default {
           id: 1,
           user: {
             name: '极目新闻',
-            avatar: 'path/to/avatar.jpg'
+            avatar: 'https://s2.loli.net/2024/01/08/T2fQxL9dOtYiGUD.jpg'
           },
-          content: '这是一个微博帖子的示例内容。',
-          image: 'path/to/image.jpg',
+          content: '在今日的FindX7发布会上，OPPO Find X7系列以其杰出的影像配置吸引了无数摄影爱好者的目光。新机凭借其行业首创双潜望四主摄和全焦段杜比视频功能，让它在拍照和视频拍摄上都实现了全方位的领先。',
+          image: '',
           time: '1小时前',
           likes: 10,
           comments: 5
         },
         // 更多帖子...
-      ]
+      ],
+      isLoggin:true
     };
   }
 };

@@ -2,17 +2,23 @@
   <el-card class="post-card">
     <div class="post-header">
       <el-avatar :src="post.user.avatar">
-        <template #error>
+        <!-- <template #error>
           <div class="image-slot">
             <el-icon><icon-picture /></el-icon>
           </div>
-        </template></el-avatar>
+        </template> -->
+      </el-avatar>
       <div class="user-info">
         <h3 class="username">{{ post.user.name }}</h3>
         <p class="post-time">{{ post.time }}</p>
       </div>
       <div class="post-follow">
-        <el-button type="text" icon="el-icon-message">
+        <!-- <button v-if="isButtonA">已关注</button>
+        <button v-else>关注</button> -->
+        <el-button class="follow-btn" type="warning" round @click="centerDialogVisible = true">
+          <el-icon>
+            <Plus />
+          </el-icon>
           关注
         </el-button>
       </div>
@@ -26,19 +32,42 @@
             <el-icon><icon-picture /></el-icon>
           </div>
         </template>
+
       </el-image>
     </div>
     <div class="post-actions">
-      <el-button type="text" icon="el-icon-thumb">
-        {{ post.likes }} Likes
-      </el-button>
-      <el-button type="text" icon="el-icon-message">
-        {{ post.comments }} Comments
-      </el-button>
+      <el-row>
+        <el-col :span="8">
+          <div>
+          <el-button type="text" class="post-action-share">
+            <el-icon>
+              <Share />
+            </el-icon>
+            {{ post.likes }}
+          </el-button>
+        </div>
+        </el-col>
+
+        <el-col :span="8">
+          <el-button type="text" class="post-action-comment">
+            <el-icon>
+              <Comment />
+            </el-icon>
+            {{ post.comments }}
+          </el-button>
+        </el-col>
+        <el-col :span="8">
+          <el-button type="text" class="post-action-like">
+            <el-icon>
+              <Star />
+            </el-icon>
+          </el-button>
+        </el-col>
+      </el-row>
     </div>
   </el-card>
 </template>
-  
+
 <script>
 export default {
   name: 'PostCard',
@@ -47,13 +76,19 @@ export default {
       type: Object,
       required: true
     }
+  },
+  data() {
+    return {
+      isButtonA: false
+    };
   }
 };
 </script>
   
 <style scoped>
 .post-card {
-  margin-bottom: 20px;
+  /* height: 800px; */
+  margin: 20px;
 }
 
 .post-header {
@@ -66,6 +101,7 @@ export default {
 }
 
 .user-info .username {
+  width: 100px;
   margin: 0;
   font-weight: bold;
 }
@@ -75,7 +111,16 @@ export default {
   color: #999;
 }
 
-.post-follow {}
+.post-header .post-follow {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.follow-btn {
+  background-color: #ff8200;
+  margin-left: auto;
+}
 
 .post-content {
   margin-top: 20px;
@@ -87,13 +132,24 @@ export default {
 }
 
 .post-actions {
+  width: 100%;
   margin-top: 10px;
   display: flex;
   justify-content: start;
 }
 
+.post-action-share:hover{
+  color: #ff8200;
+}
+
+.post-action-comment:hover{
+  color: #ff8200;
+}
+
+.post-action-like:hover{
+  color: #ff8200;
+}
 .post-actions .el-button {
   margin-right: 10px;
-}
-</style>
+}</style>
   
