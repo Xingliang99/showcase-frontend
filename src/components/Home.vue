@@ -23,13 +23,16 @@ export default {
           likes: 10,
           comments: 5
         },
-        // 更多帖子...
       ],
       isLoggin: true,
       regisForm: {
         name: "",
         password: ""
-      }
+      },
+      post:{
+        content:""
+      },
+      users: []
     };
   },
   methods: {
@@ -50,6 +53,19 @@ export default {
       ).then(function(response) {
           console.log(response)
       })
+    },
+
+    async post(){
+
+    },
+    getUsers() {
+      axios.get('http://localhost:8080/1/register')
+        .then(response => {
+          this.users = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 };
@@ -149,6 +165,14 @@ const onSubmit = () => {
                   <el-form-item>
                     <el-button type="primary" @click="submit">Create</el-button>
                     <el-button>Cancel</el-button>
+                  </el-form-item>
+                </el-form>
+
+                <el-form :model="form">
+                  <el-input v-model="post.content" />
+
+                  <el-form-item>
+                    <el-button type="primary" @click="post">发布</el-button>
                   </el-form-item>
                 </el-form>
 
