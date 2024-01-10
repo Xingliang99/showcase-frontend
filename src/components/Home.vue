@@ -1,12 +1,13 @@
 <script>
 import PostCard from './Post/PostCard.vue';
 import RegistTip from './Register/RegisterTip.vue'
+import Register from './Register/Register.vue'
 
 export default {
   components: {
     PostCard,
     PostCard
-},
+  },
   data() {
     return {
       posts: [
@@ -24,10 +25,64 @@ export default {
         },
         // 更多帖子...
       ],
-      isLoggin:true
+      isLoggin: true,
+      regisForm: {
+        name: "",
+        password: ""
+      }
     };
+  },
+  methods: {
+    async submit() {
+      const userName = this.regisForm.name;
+      const userPassword = this.regisForm.password;
+
+      await axios.post("http://localhost:8080/user/register", {
+        name: userName,
+        password: userPassword
+      }
+      ,{
+        headers: {
+          // 'Content-Type': 'multipart/form-data'
+          'Content-Type': 'application/json'
+        }
+      }
+      ).then(function(response) {
+          console.log(response)
+      })
+    }
   }
 };
+
+// const form =
+//   {
+//     name:"",
+//     password:""
+//   }
+import { reactive, ref } from 'vue'
+import axios from 'axios';
+// import { reactive } from 'vue'
+
+const regisForm = reactive({
+  name: "te",
+  password: "te"
+})
+
+const form = reactive({
+  name: '',
+  region: '',
+  date1: '',
+  date2: '',
+  delivery: false,
+  type: [],
+  resource: '',
+  desc: '',
+})
+
+const onSubmit = () => {
+  console.log('submit!')
+}
+
 </script>
 
 <template>
@@ -77,10 +132,25 @@ export default {
             </el-col>
 
             <el-col :span="8" class="hot">
-              <div class="grid-content ep-bg-purple">
+              <div>
                 <div v-if="isLoggin">
                   <button>请登录</button>
                 </div>
+
+                <el-form :model="form" label-width="120px">
+                  <el-form-item label="User name">
+                    <el-input v-model="regisForm.name" />
+                  </el-form-item>
+
+                  <el-form-item label="Password">
+                    <el-input v-model="regisForm.password"></el-input>
+                  </el-form-item>
+
+                  <el-form-item>
+                    <el-button type="primary" @click="submit">Create</el-button>
+                    <el-button>Cancel</el-button>
+                  </el-form-item>
+                </el-form>
 
                 <RegistTip />
 
@@ -102,7 +172,6 @@ export default {
 </template>
 
 <style>
-
 .header {
   /* //TODO:换成图片 */
   background-color: beige;
@@ -147,7 +216,7 @@ export default {
   line-height: 160px;
 }
 
-.category{
+.category {
   background-color: white;
   width: 200px;
   max-width: 200px;
@@ -157,7 +226,7 @@ export default {
   background-color: white;
 }
 
-.hot{
+.hot {
   background-color: white;
   width: 300px;
   max-width: 300px;
@@ -171,4 +240,3 @@ export default {
   background-color: #d3dce6;
 }
 </style>
-

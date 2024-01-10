@@ -11,6 +11,10 @@ const Home = { template: '<div>Home</div>' }
 
 const routes = [
     {
+        path: '/register',
+        redirect: () => import("../components/Register/Register.vue")
+    },
+    {
         path: '/login',
         component: () => import("../components/TheWelcome.vue")
     },
@@ -61,13 +65,13 @@ const router = createRouter({
 })
 
 //导航守卫
-router.beforeEach((to, from, next) => {
-    const isLoggedIn = store.getters.isLoggedIn;
-    if (to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn) {
-        next('/login');
-    } else {
-        next();
-    }
-})
+// router.beforeEach((to, from, next) => {
+//     const isLoggedIn = store.getters.isLoggedIn;
+//     if (to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn) {
+//         next('/login');
+//     } else {
+//         next();
+//     }
+// })
 
 export default router

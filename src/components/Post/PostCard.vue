@@ -9,8 +9,8 @@
         </template> -->
       </el-avatar>
       <div class="user-info">
-        <h3 class="username">{{ post.user.name }}</h3>
-        <p class="post-time">{{ post.time }}</p>
+        <el-text class="username">{{ post.user.name }}</el-text>
+        <el-text class="post-time">{{ post.time }}</el-text>
       </div>
       <div class="post-follow">
         <!-- <button v-if="isButtonA">已关注</button>
@@ -24,16 +24,9 @@
       </div>
     </div>
     <div class="post-content">
-      <p>{{ post.content }}</p>
+      <!-- <label>{{ post.content }}</label> -->
+      <el-text class="mx-1">{{ post.content }}</el-text>
       <img v-if="post.image" :src="post.image" class="post-image" />
-      <el-image>
-        <template #error>
-          <div class="image-slot">
-            <el-icon><icon-picture /></el-icon>
-          </div>
-        </template>
-
-      </el-image>
     </div>
     <div class="post-actions">
       <el-row>
@@ -92,6 +85,7 @@ export default {
 }
 
 .post-header {
+  height: 150px;
   display: flex;
   align-items: center;
 }
